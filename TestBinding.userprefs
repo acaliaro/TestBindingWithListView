@@ -1,0 +1,17 @@
+﻿<Properties StartupItem="iOS/TestBinding.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6s.9.3" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestBinding/MyPage.cs">
+    <Files>
+      <File FileName="TestBinding/Model.cs" Line="14" Column="3" />
+      <File FileName="TestBinding/TestBinding.cs" Line="20" Column="28" />
+      <File FileName="TestBinding/MyPage.cs" Line="18" Column="1" />
+      <File FileName="TestBinding/MyTemplate.cs" Line="20" Column="8" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/alessandrocaliaro/Projects/Test/TestBinding/TestBinding/MyPage.cs" line="18" column="52" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
