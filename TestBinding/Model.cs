@@ -1,7 +1,8 @@
 ﻿using System;
-
+using PropertyChanged;
 namespace TestBinding
 {
+	[ImplementPropertyChanged]
 	public class Model
 	{
 		public Model ()

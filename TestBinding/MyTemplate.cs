@@ -10,8 +10,12 @@ namespace TestBinding
 
 			Label l = new Label ();
 			l.SetBinding (Label.TextProperty,"Description");
-			sl.Children.Add (l);
 
+			Label lQty = new Label ();
+			lQty.SetBinding (Label.TextProperty, "Qty");
+
+			sl.Children.Add (l);
+			sl.Children.Add (lQty);
 			View = sl;
 		}
 
