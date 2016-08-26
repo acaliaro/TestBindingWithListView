@@ -1,14 +1,19 @@
 ﻿<Properties StartupItem="iOS/TestBinding.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6s.9.3" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TestBinding/MyPage.cs">
+  <MonoDevelop.Ide.ItemProperties.TestBinding.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.3E55DCCB-03C2-4649-A994-FFC41337552B" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestBinding/Model.cs">
     <Files>
-      <File FileName="TestBinding/Model.cs" Line="5" Column="28" />
-      <File FileName="TestBinding/TestBinding.cs" Line="11" Column="3" />
-      <File FileName="TestBinding/MyPage.cs" Line="43" Column="7" />
-      <File FileName="TestBinding/MyTemplate.cs" Line="18" Column="27" />
-      <File FileName="TestBinding/FodyWeavers.xml" Line="3" Column="20" />
+      <File FileName="TestBinding/Model.cs" Line="14" Column="14" />
+      <File FileName="TestBinding/TestBinding.cs" Line="19" Column="34" />
+      <File FileName="TestBinding/MyPage.cs" Line="49" Column="23" />
+      <File FileName="TestBinding/MyTemplate.cs" Line="12" Column="4" />
+      <File FileName="TestBinding/FodyWeavers.xml" Line="1" Column="1" />
+      <File FileName="TestBinding/PageModifyQty.cs" Line="12" Column="42" />
+      <File FileName="iOS/Main.cs" Line="17" Column="1" />
+      <File FileName="iOS/AppDelegate.cs" Line="15" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.TestBinding.Droid PreferredExecutionTarget="Android.Galaxy_Nexus" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/alessandrocaliaro/Projects/Test/TestBinding/TestBinding/MyPage.cs" line="18" column="52" />

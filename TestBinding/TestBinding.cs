@@ -17,7 +17,7 @@ namespace TestBinding
 			List.Add (new Model{Description = "D3", Cost = 30.0, Qty = 3 });
 
 			// The root page of your application
-			MainPage = new MyPage();
+			MainPage = new NavigationPage(new MyPage());
 		}
 
 		protected override void OnStart ()

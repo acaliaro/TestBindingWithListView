@@ -1,4 +1,3 @@
-using System;
 using Xamarin.Forms;
 
 namespace TestBinding
@@ -9,10 +8,15 @@ namespace TestBinding
 			StackLayout sl = new StackLayout ();
 
 			Label l = new Label ();
-			l.SetBinding (Label.TextProperty,"Description");
+			l.SetBinding (Label.TextProperty, "Description", stringFormat:"DESCRIPTION: {0}");
 
+			TapGestureRecognizer tgrQty = new TapGestureRecognizer();
+			tgrQty.Tapped += async (sender, e) => {
+				await Application.Current.MainPage.Navigation.PushAsync(new PageModifyQty((Model)this.BindingContext), false);
+			};
 			Label lQty = new Label ();
-			lQty.SetBinding (Label.TextProperty, "Qty");
+			lQty.GestureRecognizers.Add(tgrQty);
+			lQty.SetBinding (Label.TextProperty, "Qty", stringFormat:"QTY: {0}");
 
 			sl.Children.Add (l);
 			sl.Children.Add (lQty);
