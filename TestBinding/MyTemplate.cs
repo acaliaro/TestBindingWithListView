@@ -18,8 +18,21 @@ namespace TestBinding
 			lQty.GestureRecognizers.Add(tgrQty);
 			lQty.SetBinding (Label.TextProperty, "Qty", stringFormat:"QTY: {0}");
 
+			Label lTrash = new Label { Text = "Trash"};
+			TapGestureRecognizer tgrTrash = new TapGestureRecognizer();
+			tgrTrash.Tapped +=async (sender, e) => {
+			
+				var ret = await Application.Current.MainPage.DisplayAlert("Attention", "Delete this row?", "Yes", "No");
+
+				if (ret) {
+					App.List.Remove((Model)this.BindingContext);
+				}
+			};
+			lTrash.GestureRecognizers.Add(tgrTrash);
+
 			sl.Children.Add (l);
 			sl.Children.Add (lQty);
+			sl.Children.Add(lTrash);
 			View = sl;
 		}
 
