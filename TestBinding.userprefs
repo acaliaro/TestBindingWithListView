@@ -1,18 +1,20 @@
-﻿<Properties StartupItem="iOS/TestBinding.iOS.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.ItemProperties.TestBinding.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.3E55DCCB-03C2-4649-A994-FFC41337552B" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TestBinding/MyTemplate.cs">
+﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupConfiguration="{7FADED5F-A7A9-4BBB-A643-D10D79ADA99E}|Default">
+  <MonoDevelop.Ide.ItemProperties.TestBinding.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.A6ABDE29-C1BC-446C-9140-D4B7A84C620C" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestBinding/MyPage.cs">
     <Files>
-      <File FileName="TestBinding/Model.cs" Line="14" Column="14" />
-      <File FileName="TestBinding/TestBinding.cs" Line="19" Column="34" />
-      <File FileName="TestBinding/MyPage.cs" Line="49" Column="23" />
-      <File FileName="TestBinding/MyTemplate.cs" Line="28" Column="1" />
+      <File FileName="TestBinding/Model.cs" Line="1" Column="1" />
+      <File FileName="TestBinding/TestBinding.cs" Line="13" Column="4" />
+      <File FileName="TestBinding/MyPage.cs" Line="15" Column="251" />
+      <File FileName="TestBinding/MyTemplate.cs" Line="22" Column="18" />
       <File FileName="TestBinding/FodyWeavers.xml" Line="1" Column="1" />
       <File FileName="TestBinding/PageModifyQty.cs" Line="12" Column="42" />
       <File FileName="iOS/Main.cs" Line="17" Column="1" />
       <File FileName="iOS/AppDelegate.cs" Line="15" Column="4" />
+      <File FileName="TestBinding/MyPageViewModel.cs" Line="42" Column="1" />
+      <File FileName="Droid/MainActivity.cs" Line="23" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.TestBinding.Droid PreferredExecutionTarget="Android.Galaxy_Nexus" />
+  <MonoDevelop.Ide.ItemProperties.TestBinding.Droid PreferredExecutionTarget="Android.Android_Accelerated_x86" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

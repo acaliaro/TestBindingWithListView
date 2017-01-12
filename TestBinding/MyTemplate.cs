@@ -10,24 +10,21 @@ namespace TestBinding
 			Label l = new Label ();
 			l.SetBinding (Label.TextProperty, "Description", stringFormat:"DESCRIPTION: {0}");
 
+			// LABEL QTY
 			TapGestureRecognizer tgrQty = new TapGestureRecognizer();
-			tgrQty.Tapped += async (sender, e) => {
-				await Application.Current.MainPage.Navigation.PushAsync(new PageModifyQty((Model)this.BindingContext), false);
-			};
+			tgrQty.SetBinding(TapGestureRecognizer.CommandProperty, new Binding("BindingContext.QtyCommand", source: new MyPage()));
+			tgrQty.SetBinding(TapGestureRecognizer.CommandParameterProperty, ".");
+
 			Label lQty = new Label ();
 			lQty.GestureRecognizers.Add(tgrQty);
 			lQty.SetBinding (Label.TextProperty, "Qty", stringFormat:"QTY: {0}");
 
-			Label lTrash = new Label { Text = "Trash"};
+			// LABEL TRASH
 			TapGestureRecognizer tgrTrash = new TapGestureRecognizer();
-			tgrTrash.Tapped +=async (sender, e) => {
-			
-				var ret = await Application.Current.MainPage.DisplayAlert("Attention", "Delete this row?", "Yes", "No");
+			tgrTrash.SetBinding(TapGestureRecognizer.CommandProperty, new Binding("BindingContext.TrashCommand", source: new MyPage()));
+			tgrTrash.SetBinding(TapGestureRecognizer.CommandParameterProperty, ".");
 
-				if (ret) {
-					App.List.Remove((Model)this.BindingContext);
-				}
-			};
+			Label lTrash = new Label { Text = "Trash"};
 			lTrash.GestureRecognizers.Add(tgrTrash);
 
 			sl.Children.Add (l);

@@ -36,6 +36,7 @@
     <Compile Include="MyPage.cs" />
     <Compile Include="MyTemplate.cs" />
     <Compile Include="PageModifyQty.cs" />
+    <Compile Include="MyPageViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets')" />

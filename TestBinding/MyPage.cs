@@ -1,53 +1,30 @@
-﻿using System;
-using Xamarin.Forms;
-using Acr.UserDialogs;
+﻿using Xamarin.Forms;
 
 namespace TestBinding
 {
 	public class MyPage : ContentPage
 	{
-		public MyPage ()
+		public MyPage()
 		{
 
-			StackLayout sl = new StackLayout ();
-			sl.Padding = new Thickness (20, 20, 20, 20);
+			this.BindingContext = new MyPageViewModel();
 
-			Label l = new Label() { Text = "You can TAP on Description or on QTY... there are two different answers because Description raise a SelectedItem, Qty raise a TapGestureRecognizer"};
+			StackLayout sl = new StackLayout();
+			sl.Padding = new Thickness(20, 20, 20, 20);
 
-			ListView lv = new ListView ();
-			lv.ItemsSource = App.List;
-			lv.HasUnevenRows = true;
-			lv.ItemTemplate = new DataTemplate (typeof(MyTemplate));
-			lv.ItemSelected += async(object sender, SelectedItemChangedEventArgs e) => {
+			Label l = new Label() { Text = "You can TAP on Description, Trash or on QTY... there are two different answers because Description raise a SelectedItem, Trash and Qty raise a TapGestureRecognizer. If you delete all rows, a Label appears. ATTENTION. NOW TRASH DOES NOT WORKS!!!" };
+			Label labelEmpty = new Label { Text = "THE LIST IS EMPTY", VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand };
+			labelEmpty.SetBinding(Label.IsVisibleProperty, "IsLabelEmptyVisible");
 
-				var ret = await DisplayActionSheet ("Select", "Cancel", "Destruction", new string[]{"Edit", "Delete"});
-
-				if(ret == "Edit"){
-
-					PromptConfig promptConfig = new PromptConfig();
-					promptConfig.CancelText = "CANCEL";
-					promptConfig.InputType = InputType.Number;
-					promptConfig.Message = "Modify QTA";
-					promptConfig.OkText = "OK";
-					promptConfig.Title  = "UPDATE";
-					PromptResult result= await UserDialogs.Instance.PromptAsync (promptConfig);
-					if(result.Ok)
-						((Model)lv.SelectedItem).Qty = int.Parse (result.Value);
-
-				}
-				else if(ret == "Delete"){
-
-					App.List.Remove ((Model)lv.SelectedItem);
-
-				}
-				else{}
-
-				//string s = ((Model)e.SelectedItem).Description;
-			};
-
+			ListView lv = new ListView { HasUnevenRows = true };
+			lv.ItemTemplate = new DataTemplate(typeof(MyTemplate));
+			lv.SetBinding(ListView.ItemsSourceProperty, "List");
+			lv.SetBinding(ListView.IsVisibleProperty, "IsListViewVisible");
+			lv.SetBinding(ListView.SelectedItemProperty, "SelectedItem");
 
 			sl.Children.Add(l);
-			sl.Children.Add (lv);
+			sl.Children.Add(labelEmpty);
+			sl.Children.Add(lv);
 
 			Content = sl;
 		}
