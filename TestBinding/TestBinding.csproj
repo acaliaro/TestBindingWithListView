@@ -34,7 +34,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MyPage.cs" />
-    <Compile Include="MyTemplate.cs" />
     <Compile Include="PageModifyQty.cs" />
     <Compile Include="MyPageViewModel.cs" />
   </ItemGroup>
