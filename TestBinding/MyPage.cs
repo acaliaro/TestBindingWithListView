@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace TestBinding
 {
@@ -43,7 +44,8 @@ namespace TestBinding
 				lTrash.GestureRecognizers.Add(tgrTrash);
 
 				var deleteAction = new MenuItem { Text = "Delete", IsDestructive = true }; // red background
-				deleteAction.SetBinding(MenuItem.CommandParameterProperty, new Binding("BindingContext.TrashCommand", source: this));
+				deleteAction.SetBinding(MenuItem.CommandProperty, new Binding("BindingContext.TrashCommand", source: this));
+				deleteAction.SetBinding(MenuItem.CommandParameterProperty, ".");
 
 				slView.Children.Add(lDesc);
 				slView.Children.Add(lQty);
