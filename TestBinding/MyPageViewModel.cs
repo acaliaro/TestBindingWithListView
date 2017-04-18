@@ -30,10 +30,8 @@ namespace TestBinding
 
 		public MyPageViewModel()
 		{
-			List.Add(new Model { Description = "D1", Cost = 10.0, Qty = 1 });
-			List.Add(new Model { Description = "D2", Cost = 20.0, Qty = 2 });
-			List.Add(new Model { Description = "D3", Cost = 30.0, Qty = 3 });
-			Count = List.Count;
+
+			addRows();
 
 			this.QtyCommand = new Command(async (object obj) => {
 
@@ -146,6 +144,36 @@ namespace TestBinding
 					await Application.Current.MainPage.DisplayAlert("Attention", ex.Message, "Ok");
 				}
 			});
+
+			this.AddRowsCommand = new Command(async (object obj) => {
+			
+				try
+				{
+					if (_isTapped)
+						return;
+
+					addRows();
+
+					_isTapped = false;
+
+				}
+				catch (Exception ex)
+				{
+					_isTapped = false;
+					await Application.Current.MainPage.DisplayAlert("Attention", ex.Message, "Ok");
+				}
+			});
+
+
+		}
+
+		private void addRows() {
+		
+			List.Add(new Model { Description = "D1", Cost = 10.0, Qty = 1, BackgroundColor = "#9ac16e", TextColor = "#001833" });
+			List.Add(new Model { Description = "D2", Cost = 20.0, Qty = 2, BackgroundColor = "#8d0000", TextColor = "#001833" });
+			List.Add(new Model { Description = "D3", Cost = 30.0, Qty = 3, BackgroundColor = "#3a6cf6", TextColor = "#001833" });
+			Count = List.Count;
+
 		}
 
 		public Model SelectedItem { 
@@ -191,6 +219,7 @@ namespace TestBinding
 		public ICommand TrashCommand { get; protected set;}
 		public ICommand UpDown1Command { get; protected set; }
 		public ICommand UpDown2Command { get; protected set; }
+		public ICommand AddRowsCommand { get; protected set; }
 		public ICommand QtyCommand { get; protected set;}
 	}
 }

@@ -14,6 +14,8 @@ namespace TestBinding
 		public int Qty { get; set; }
 		public bool Checked1 { get; set; }
 		public bool Checked2 { get; set; }
+		public string BackgroundColor { get; set; }
+		public string TextColor { get; set; }
 
 	}
 }

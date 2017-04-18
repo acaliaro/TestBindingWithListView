@@ -15,18 +15,27 @@ namespace TestBinding
 			StackLayout sl = new StackLayout();
 			sl.Padding = new Thickness(20, 20, 20, 20);
 
-			Label l = new Label() { Text = "You can TAP on Description, Trash or on QTY... there are two different answers because Description raise a SelectedItem, Trash and Qty raise a TapGestureRecognizer. If you delete all rows, a Label appears. If you longpress a row, a ContextAction is executed. If you tap on the Image, it changes" };
-			Label labelEmpty = new Label { Text = "THE LIST IS EMPTY", VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand };
-			labelEmpty.SetBinding(Label.IsVisibleProperty, "IsLabelEmptyVisible");
+			Label l = new Label() { Text = "You can TAP on Description, Trash or QTY... there are two different answers because Description raise a SelectedItem, Trash and Qty raise a TapGestureRecognizer. If you delete all rows, a Label appears. If you longpress a row, a ContextAction is executed. If you tap on the UP/DOWN Image, it changes" };
+
+
+			// TapGesture to create rows
+			TapGestureRecognizer tgrLabelEmpty = new TapGestureRecognizer();
+			tgrLabelEmpty.SetBinding(TapGestureRecognizer.CommandProperty, "AddRowsCommand");
+
+			Label labelEmpty = new Label { Text = "THE LIST IS EMPTY. Tap this label to create the list", VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand };
+			labelEmpty.SetBinding(VisualElement.IsVisibleProperty, "IsLabelEmptyVisible");
+			labelEmpty.GestureRecognizers.Add(tgrLabelEmpty);
 
 			// Moved here the Template so I can use Commands in ViewModel also in ViewCell with this binding
 			ListView lv = new ListView { HasUnevenRows = true };
 			lv.ItemTemplate = new DataTemplate(() =>
 			{
 				StackLayout slView = new StackLayout();
+				slView.SetBinding(StackLayout.BackgroundColorProperty, "BackgroundColor");
 
 				Label lDesc = new Label();
 				lDesc.SetBinding(Label.TextProperty, "Description", stringFormat: "DESCRIPTION: {0}");
+				lDesc.SetBinding(Label.TextColorProperty, "TextColor");
 
 				// LABEL QTY
 				TapGestureRecognizer tgrQty = new TapGestureRecognizer();
@@ -36,14 +45,16 @@ namespace TestBinding
 				Label lQty = new Label();
 				lQty.GestureRecognizers.Add(tgrQty);
 				lQty.SetBinding(Label.TextProperty, "Qty", stringFormat: "QTY: {0}");
+				lQty.SetBinding(Label.TextColorProperty, "TextColor");
 
-				// LABEL TRASH
+				// Image TRASH
 				TapGestureRecognizer tgrTrash = new TapGestureRecognizer();
 				tgrTrash.SetBinding(TapGestureRecognizer.CommandProperty, new Binding("BindingContext.TrashCommand", source: this));
 				tgrTrash.SetBinding(TapGestureRecognizer.CommandParameterProperty, ".");
 
-				Label lTrash = new Label { Text = "Trash", VerticalTextAlignment = TextAlignment.Center };
-				lTrash.GestureRecognizers.Add(tgrTrash);
+				Image imageTrash = new Image() { Source = "trash.png" };
+				//Label lTrash = new Label { Text = "Trash", VerticalTextAlignment = TextAlignment.Center };
+				imageTrash.GestureRecognizers.Add(tgrTrash);
 
 				// Image UP/DOWN 1
 				TapGestureRecognizer tgrUpDown1 = new TapGestureRecognizer();
@@ -64,7 +75,7 @@ namespace TestBinding
 				imageUpDown2.GestureRecognizers.Add(tgrUpDown2);
 
 				// Stack layout last row
-				StackLayout slLastRow = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand, Children = { lTrash, imageUpDown1, imageUpDown2 } };
+				StackLayout slLastRow = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand, Children = { imageTrash, imageUpDown1, imageUpDown2 } };
 
 				var deleteAction = new MenuItem { Text = "Delete", IsDestructive = true }; // red background
 				deleteAction.SetBinding(MenuItem.CommandProperty, new Binding("BindingContext.TrashCommand", source: this));
