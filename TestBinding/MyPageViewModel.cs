@@ -72,7 +72,7 @@ namespace TestBinding
 					if (ret)
 					{
 
-						int idx = List.IndexOf((Model)obj);
+						//int idx = List.IndexOf((Model)obj);
 
 						List.Remove((Model)obj);
 						Count = List.Count;
@@ -82,6 +82,66 @@ namespace TestBinding
 
 				}
 				catch (Exception ex) {
+					_isTapped = false;
+					await Application.Current.MainPage.DisplayAlert("Attention", ex.Message, "Ok");
+				}
+			});
+
+			this.UpDown1Command = new Command(async (object obj) =>
+			{
+
+				try
+				{
+					if (_isTapped)
+						return;
+
+					if (obj != null)
+						System.Diagnostics.Debug.WriteLine("Obj is not null");
+					else
+						System.Diagnostics.Debug.WriteLine("Obj IS null");
+
+
+					_isTapped = true;
+
+					int idx = List.IndexOf((Model)obj);
+
+					List[idx].Checked1 = !List[idx].Checked1;
+
+					_isTapped = false;
+
+				}
+				catch (Exception ex)
+				{
+					_isTapped = false;
+					await Application.Current.MainPage.DisplayAlert("Attention", ex.Message, "Ok");
+				}
+			});
+
+			this.UpDown2Command = new Command(async (object obj) =>
+			{
+
+				try
+				{
+					if (_isTapped)
+						return;
+
+					if (obj != null)
+						System.Diagnostics.Debug.WriteLine("Obj is not null");
+					else
+						System.Diagnostics.Debug.WriteLine("Obj IS null");
+
+
+					_isTapped = true;
+
+					int idx = List.IndexOf((Model)obj);
+
+					List[idx].Checked2 = !List[idx].Checked2;
+
+					_isTapped = false;
+
+				}
+				catch (Exception ex)
+				{
 					_isTapped = false;
 					await Application.Current.MainPage.DisplayAlert("Attention", ex.Message, "Ok");
 				}
@@ -129,6 +189,8 @@ namespace TestBinding
 		}
 
 		public ICommand TrashCommand { get; protected set;}
+		public ICommand UpDown1Command { get; protected set; }
+		public ICommand UpDown2Command { get; protected set; }
 		public ICommand QtyCommand { get; protected set;}
 	}
 }

@@ -12,6 +12,8 @@ namespace TestBinding
 		public string Description { get; set; }
 		public double Cost { get; set; }
 		public int Qty { get; set; }
+		public bool Checked1 { get; set; }
+		public bool Checked2 { get; set; }
 
 	}
 }
