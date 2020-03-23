@@ -31,6 +31,13 @@ namespace TestBinding
 			ListView lv = new ListView { HasUnevenRows = true };
 			lv.ItemTemplate = new DataTemplate(() =>
 			{
+				return new MyViewCell(lv);
+			});
+
+
+				/*
+				new DataTemplate(() =>
+			{
 				StackLayout slView = new StackLayout();
 				slView.SetBinding(StackLayout.BackgroundColorProperty, "BackgroundColor");
 
@@ -92,6 +99,8 @@ namespace TestBinding
 				return vc;
 			});
 
+	*/
+
 			lv.SetBinding(ListView.ItemsSourceProperty, "List");
 			lv.SetBinding(VisualElement.IsVisibleProperty, "IsListViewVisible");
 			lv.SetBinding(ListView.SelectedItemProperty, "SelectedItem");
@@ -122,6 +131,73 @@ namespace TestBinding
 			{
 				throw new NotImplementedException();
 			}
+		}
+
+		class MyViewCell : ViewCell
+		{
+
+			public MyViewCell(ListView lv)
+			{
+				StackLayout slView = new StackLayout();
+				slView.SetBinding(StackLayout.BackgroundColorProperty, "BackgroundColor");
+
+				Label lDesc = new Label();
+				lDesc.SetBinding(Label.TextProperty, "Description", stringFormat: "DESCRIPTION: {0}");
+				lDesc.SetBinding(Label.TextColorProperty, "TextColor");
+
+				// LABEL QTY
+				TapGestureRecognizer tgrQty = new TapGestureRecognizer();
+				tgrQty.SetBinding(TapGestureRecognizer.CommandProperty, new Binding("BindingContext.QtyCommand", source: lv));
+				tgrQty.SetBinding(TapGestureRecognizer.CommandParameterProperty, ".");
+
+				Label lQty = new Label();
+				lQty.GestureRecognizers.Add(tgrQty);
+				lQty.SetBinding(Label.TextProperty, "Qty", stringFormat: "QTY: {0}");
+				lQty.SetBinding(Label.TextColorProperty, "TextColor");
+
+				// Image TRASH
+				TapGestureRecognizer tgrTrash = new TapGestureRecognizer();
+				tgrTrash.SetBinding(TapGestureRecognizer.CommandProperty, new Binding("BindingContext.TrashCommand", source: lv));
+				tgrTrash.SetBinding(TapGestureRecognizer.CommandParameterProperty, ".");
+
+				Image imageTrash = new Image() { Source = "trash.png" };
+				//Label lTrash = new Label { Text = "Trash", VerticalTextAlignment = TextAlignment.Center };
+				imageTrash.GestureRecognizers.Add(tgrTrash);
+
+				// Image UP/DOWN 1
+				TapGestureRecognizer tgrUpDown1 = new TapGestureRecognizer();
+				tgrUpDown1.SetBinding(TapGestureRecognizer.CommandProperty, new Binding("BindingContext.UpDown1Command", source: lv));
+				tgrUpDown1.SetBinding(TapGestureRecognizer.CommandParameterProperty, ".");
+
+				Image imageUpDown1 = new Image() { HorizontalOptions = LayoutOptions.EndAndExpand, VerticalOptions = LayoutOptions.Start, Scale = 0.5 };
+				imageUpDown1.SetBinding(Image.SourceProperty, new Binding("Checked1", BindingMode.Default, new CheckedToSourceConverter()));
+				imageUpDown1.GestureRecognizers.Add(tgrUpDown1);
+
+				// Image UP/DOWN 2
+				TapGestureRecognizer tgrUpDown2 = new TapGestureRecognizer();
+				tgrUpDown2.SetBinding(TapGestureRecognizer.CommandProperty, new Binding("BindingContext.UpDown2Command", source: lv));
+				tgrUpDown2.SetBinding(TapGestureRecognizer.CommandParameterProperty, ".");
+
+				Image imageUpDown2 = new Image() { HorizontalOptions = LayoutOptions.EndAndExpand, VerticalOptions = LayoutOptions.Start, Scale = 0.5 };
+				imageUpDown2.SetBinding(Image.SourceProperty, new Binding("Checked2", BindingMode.Default, new CheckedToSourceConverter()));
+				imageUpDown2.GestureRecognizers.Add(tgrUpDown2);
+
+				// Stack layout last row
+				StackLayout slLastRow = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand, Children = { imageTrash, imageUpDown1, imageUpDown2 } };
+
+				var deleteAction = new MenuItem { Text = "Delete", IsDestructive = true }; // red background
+				deleteAction.SetBinding(MenuItem.CommandProperty, new Binding("BindingContext.TrashCommand", source: lv));
+				deleteAction.SetBinding(MenuItem.CommandParameterProperty, ".");
+
+				slView.Children.Add(lDesc);
+				slView.Children.Add(lQty);
+				slView.Children.Add(slLastRow);
+
+
+				View = slView;
+				
+			}
+
 		}
 	}
 }
