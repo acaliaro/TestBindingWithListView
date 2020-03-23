@@ -1,0 +1,7 @@
+TestBinding.Android/obj/
+TestBinding.Android/bin/
+TestBinding.iOS/obj/
+TestBinding.UWP/obj/
+TestBinding/bin/
+TestBinding/obj/
+.vs/

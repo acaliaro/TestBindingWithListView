@@ -1,11 +1,11 @@
-﻿using System;
-using PropertyChanged;
+﻿using System.ComponentModel;
+
 namespace TestBinding
 {
-	[ImplementPropertyChanged]
-	public class Model
+	public class Model : INotifyPropertyChanged
 	{
-		public Model ()
+
+		public Model()
 		{
 		}
 
@@ -17,6 +17,6 @@ namespace TestBinding
 		public string BackgroundColor { get; set; }
 		public string TextColor { get; set; }
 
+		public event PropertyChangedEventHandler PropertyChanged;
 	}
 }
-
